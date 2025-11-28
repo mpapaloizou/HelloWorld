@@ -26,7 +26,7 @@ public class WeatherController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetWeather([FromQuery] WeatherRequest request)
     {
-        if(request is null)
+        if (request is null)
         {
             return BadRequest("Invalid or null request");
         }
@@ -34,19 +34,17 @@ public class WeatherController : ControllerBase
         {
             return BadRequest("Invalid or null request");
         }
+
         var externalWeatherRequest = request.ToExternalWeatherRequest();
 
        var errorOrResult = await _externalWeatherService.GetCurrentWeatherAsync(externalWeatherRequest);
 
         if (errorOrResult.IsError)
         {
-            // TODO : Customize ErrorOr (or create a custom result type) and return the appropriate status code based on type of error
-            //if (errorOrResult.FirstError.Type.Equals(Error.Unexpected()))
-            //{
-
-            //} else 
+          
              return StatusCode(StatusCodes.Status500InternalServerError, errorOrResult.FirstError.Description);
         }
+
         var apiResponse = errorOrResult.Value.ToWeatherResponse();
 
         return Ok(apiResponse);

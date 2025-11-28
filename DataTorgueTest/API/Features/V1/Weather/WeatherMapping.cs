@@ -6,6 +6,11 @@ using System.Runtime.CompilerServices;
 
 namespace API.Features.V1.Weather;
 
+/// <summary>
+/// Generated - needs review / double check    -    run out of time
+/// 
+/// Also make the code consistent, e.g. I prefer having curly brackets after if statements instead of one liners and also i prefer using 'is false' instead of '!'
+/// </summary>
 public static class WeatherMapping
 {
     public static ExternalWeatherRequest ToExternalWeatherRequest(this WeatherRequest request)
@@ -113,7 +118,7 @@ public static class WeatherMapping
         }
 
         // Fallback -
-        // TODO: This breaks the "Return early" design pattern
+        // TODO: This breaks the "Return early" design pattern  /  return errors early and the success scenario at the end
         // Ideally I am trying to be consistent and return errors early, and the success scenario at the end
         return RecommendationPhraseConstantStrings.ErrorRecommendation;
     }

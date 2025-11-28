@@ -16,8 +16,6 @@ public class OpenWeatherService : IExternalWeatherService
     private readonly HttpClient _httpClient;
     private readonly WeatherRequestCountService _requestCount;
 
-    // TODO: Ideally read from (AppSettings) configuration, or even better from (.env) secrets.
-    // Create a custom DTO and require/validate this on startup. Register it as a service
     private const string ApiKey = "20b05f48307adb467d0272e43b15f7f6";
 
     public OpenWeatherService(HttpClient httpClient, WeatherRequestCountService requestCount)

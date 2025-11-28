@@ -1,4 +1,6 @@
 
+using API.Features.V1;
+
 namespace API
 {
     public class Program
@@ -14,6 +16,8 @@ namespace API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddServices();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -27,8 +31,9 @@ namespace API
 
             app.UseAuthorization();
 
-
             app.MapControllers();
+
+            
 
             app.Run();
         }
